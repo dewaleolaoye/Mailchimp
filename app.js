@@ -13,13 +13,12 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 // Signup Route
 app.post('/signup', (req, res) => {
-    const {firstname, lastName, email} = req.body;
-
+    const {firstName, lastName, email} = req.body;
     // Make Sure fields are filled
-    if (!firstname || !lastName || !email) {
+    if (!firstName || !lastName || !email) {
         res.redirect('/fail.html');
         return;
-    }
+    } 
 
      // Construct req Data
      const data = {
@@ -28,7 +27,7 @@ app.post('/signup', (req, res) => {
                  email_address: email,
                  status: 'subscribed',
                  merge_fields: {
-                     FNAME: firstname,
+                     FNAME: firstName,
                      LNAME: lastName
                  }
              }
@@ -58,8 +57,6 @@ app.post('/signup', (req, res) => {
         }
     });
 });
-
-
 
 const port = process.env.PORT || 5000;
 app.listen(port, console.log(`Server started on port ${port}`));
